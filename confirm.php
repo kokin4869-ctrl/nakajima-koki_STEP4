@@ -32,20 +32,19 @@ if ($address === "" || !preg_match('/\A[\p{Hiragana}\p{Katakana}\p{Han}a-zA-Z0-9
 }
 $question = $_POST["question"] ?? "";
 
-if (trim($question) === "") {
-    exit("Invalid question.");
-}
 $gender = $_POST["gender"] ?? "";
 
 if (!in_array($gender, ["male", "female"], true)) {
     exit("Invalid gender.");
 }
 ?>
-<h1>Confirm</h1>
+<h1>入力内容確認</h1>
+<p>名前：
 <?php
 $name = $_POST["name"] ?? "";
 echo htmlspecialchars($name, ENT_QUOTES, "UTF-8");
 ?>
+</p>
 <p>Age:
 <?php echo htmlspecialchars($_POST["age"] ?? "" , ENT_QUOTES, "UTF-8"); ?>
 </p>
@@ -67,7 +66,7 @@ echo htmlspecialchars($name, ENT_QUOTES, "UTF-8");
 </p>
 
 <p>Gender:
-<?php echo htmlspecialchars($_POST["gender"] ?? "", ENT_QUOTES, "UTF-8"); ?>
+<?php echo htmlspecialchars($gender === "male" ? "男性" : "女性", ENT_QUOTES, "UTF-8"); ?>
 </p>
 
 </body>
